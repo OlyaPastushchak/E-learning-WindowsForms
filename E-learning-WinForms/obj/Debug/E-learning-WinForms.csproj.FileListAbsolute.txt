@@ -1,0 +1,10 @@
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\bin\Debug\E-learning-WinForms.exe.config
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\bin\Debug\E-learning-WinForms.exe
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\bin\Debug\E-learning-WinForms.pdb
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\obj\Debug\E-learning-WinForms.csprojResolveAssemblyReference.cache
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\obj\Debug\E_learning_WinForms.Properties.Resources.resources
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\obj\Debug\E-learning-WinForms.csproj.GenerateResource.Cache
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\obj\Debug\E-learning-WinForms.csproj.CoreCompileInputs.cache
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\obj\Debug\E-learning-WinForms.exe
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\obj\Debug\E-learning-WinForms.pdb
+C:\Users\Olya\source\repos\E-learning-WinForms\E-learning-WinForms\obj\Debug\E_learning_WinForms.Form1.resources
