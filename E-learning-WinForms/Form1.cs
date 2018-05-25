@@ -12,53 +12,53 @@ namespace E_learning_WinForms
 {
     public partial class Form1 : Form
     {
+        private static int countPoints;
+        private Circle newCircle;
+        private List<Circle> drawenCircles;
+
         public Form1()
         {
             InitializeComponent();
+            newCircle = new Circle();
+            drawenCircles = new List<Circle>();
+            countPoints = 0;
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        
+        private void panel1_DoubleClick(object sender, EventArgs e)
         {
-
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Hello");
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-        Point firstp = new Point();
+            countPoints++;
+            var p = sender as Panel;
+            Graphics g = p.CreateGraphics();
+            Pen pen = new Pen(Color.Black, 3);
+            Brush pointBrush = (Brush)Brushes.Black;
+            int pointX = ((MouseEventArgs)e).X;
+            int pointY = ((MouseEventArgs)e).Y;
+            g.FillRectangle(pointBrush, pointX, pointY, 2, 2);//draws a point
             
+            if (countPoints % 2 == 1)
+            {
+                newCircle.Centre = new Point(pointX, pointY);
+            }
+            else
+            {
+                newCircle.Edge = new Point(pointX, pointY);               
+                double radius = newCircle.Radius();
+                g.DrawEllipse(pen, (float)(newCircle.Centre.X -radius), (float)(newCircle.Centre.Y-radius), (float)(radius * 2), (float)(radius * 2));
 
-        private void pictureBox1_MouseDown_1(object sender, MouseEventArgs e)
-        {
-            firstp = e.Location;
+                drawenCircles.Add(newCircle);
+
+                
+                ColorDialog colorDialog1 = new ColorDialog();
+                if (colorDialog1.ShowDialog() == DialogResult.OK)
+                {
+                   g.FillEllipse(new SolidBrush(colorDialog1.Color), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+
+                }
+            }
+            
         }
-
-        private void pictureBox1_MouseUp_1(object sender, MouseEventArgs e)
-        {
-            Graphics gr = pictureBox1.CreateGraphics();
-            gr.DrawEllipse(new Pen(Brushes.Red), firstp.X, firstp.Y, e.X - firstp.X, e.Y - firstp.Y);
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-           
-
-        }
-
-        //private void pictureBox1_Click(object sender, EventArgs e)
-        //{
-
-        //}
     }
 }

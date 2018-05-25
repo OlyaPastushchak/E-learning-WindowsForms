@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 using System.Drawing;
 namespace E_learning_WinForms
 {
-   
-    //class Point
-    //{
-    //    public int X { get; set; }
-    //    public int Y { get; set; }        
-    //}
-    
+       
     class Circle
     {
         public Point Centre { get; set; }
         public Point Edge { get; set; }
+        public Color CircleColor { get; set; }
 
         public Circle(Point c, Point e)
         {
             Centre = c;
             Edge = e;
+            CircleColor = Color.White;
         }
+       
         public Circle(){}
+
+        public double Radius()
+        {
+            return Math.Pow((Centre.X - Edge.X) * (Centre.X - Edge.X) + (Centre.Y - Edge.Y) * (Centre.Y - Edge.Y), 0.5);
+        }
+
+        public bool IsCompleted()
+        {
+            return (Centre!=null && Edge!=null);
+        }
     }
 }
