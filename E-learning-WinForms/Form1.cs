@@ -113,7 +113,6 @@ namespace E_learning_WinForms
         private void shapesToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             string clickedname = e.ClickedItem.Text;
-            MessageBox.Show(clickedname);
             currentCircle = drawenCircles.Find(x => x.Name == clickedname);            
         }
     }
