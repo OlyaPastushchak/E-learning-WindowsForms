@@ -45,6 +45,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(500, 300);
             this.panel1.TabIndex = 2;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             this.panel1.DoubleClick += new System.EventHandler(this.panel1_DoubleClick);
             // 
             // menuStrip1
@@ -91,6 +92,7 @@
             this.shapesToolStripMenuItem.Name = "shapesToolStripMenuItem";
             this.shapesToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.shapesToolStripMenuItem.Text = "Shapes";
+            this.shapesToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.shapesToolStripMenuItem_DropDownItemClicked);
             // 
             // Form1
             // 
@@ -102,7 +104,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Figures";
+            this.Text = "Circles";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

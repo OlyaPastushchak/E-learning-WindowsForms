@@ -14,12 +14,14 @@ namespace E_learning_WinForms
     {
         private static int countPoints;
         private Circle newCircle;
+        private Circle currentCircle;
         private List<Circle> drawenCircles;
 
         public Form1()
         {
             InitializeComponent();
             newCircle = new Circle();
+            currentCircle = new Circle();
             drawenCircles = new List<Circle>();
             countPoints = 0;
         }
@@ -68,20 +70,51 @@ namespace E_learning_WinForms
                 double radius = newCircle.Radius();
                 g.DrawEllipse(pen, (float)(newCircle.Centre.X -radius), (float)(newCircle.Centre.Y-radius), (float)(radius * 2), (float)(radius * 2));
 
-                drawenCircles.Add(newCircle);
-                
+                               
                 ColorDialog colorDialog1 = new ColorDialog();
                 if (colorDialog1.ShowDialog() == DialogResult.OK)
                 {
-                   g.FillEllipse(new SolidBrush(colorDialog1.Color), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+                    newCircle.CircleColor = colorDialog1.Color;
+                    g.DrawEllipse(new Pen(colorDialog1.Color,3), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+                    g.FillEllipse(new SolidBrush(colorDialog1.Color), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
                 }
 
                 newCircle.Name = ShowDialog("Please enter name for circle", "Name for circle");
-                //MessageBox.Show(promptValue);
+                drawenCircles.Add(new Circle(newCircle));
                 ToolStripItem subItem = new ToolStripMenuItem(newCircle.Name);
                 shapesToolStripMenuItem.DropDownItems.Add(subItem);
             }
             
+        }
+
+
+       
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs mouseEvent = e as MouseEventArgs;
+            if (mouseEvent.Button == MouseButtons.Right)
+            {
+                var p = sender as Panel;
+                Graphics g = p.CreateGraphics();
+                int newCentreX = ((MouseEventArgs)e).X;
+                int newCentreY = ((MouseEventArgs)e).Y;
+                double radius = currentCircle.Radius();
+                int newEdgeX = newCentreX - (int)radius;
+                int newEdgeY = newCentreY;
+
+                g.FillEllipse(new SolidBrush(Color.White), (float)(currentCircle.Centre.X - radius), (float)(currentCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+                g.DrawEllipse(new Pen(Color.White, 3), (float)(currentCircle.Centre.X - radius), (float)(currentCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+                currentCircle.Centre = new Point(newCentreX, newCentreY);
+                currentCircle.Edge = new Point(newEdgeX, newEdgeY);
+                g.FillEllipse(new SolidBrush(currentCircle.CircleColor), (float)(currentCircle.Centre.X - radius), (float)(currentCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+            }
+        }
+
+        private void shapesToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            string clickedname = e.ClickedItem.Text;
+            MessageBox.Show(clickedname);
+            currentCircle = drawenCircles.Find(x => x.Name == clickedname);            
         }
     }
 }
