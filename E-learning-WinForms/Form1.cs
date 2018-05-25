@@ -25,8 +25,28 @@ namespace E_learning_WinForms
         }
 
 
+        public static string ShowDialog(string text, string caption)
+        {
+            Form prompt = new Form()
+            {
+                Width = 500,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = caption,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
+            TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+            Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmation);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmation;
 
-        
+            return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+        }
+
         private void panel1_DoubleClick(object sender, EventArgs e)
         {
             countPoints++;
@@ -49,14 +69,17 @@ namespace E_learning_WinForms
                 g.DrawEllipse(pen, (float)(newCircle.Centre.X -radius), (float)(newCircle.Centre.Y-radius), (float)(radius * 2), (float)(radius * 2));
 
                 drawenCircles.Add(newCircle);
-
                 
                 ColorDialog colorDialog1 = new ColorDialog();
                 if (colorDialog1.ShowDialog() == DialogResult.OK)
                 {
                    g.FillEllipse(new SolidBrush(colorDialog1.Color), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
-
                 }
+
+                newCircle.Name = ShowDialog("Please enter name for circle", "Name for circle");
+                //MessageBox.Show(promptValue);
+                ToolStripItem subItem = new ToolStripMenuItem(newCircle.Name);
+                shapesToolStripMenuItem.DropDownItems.Add(subItem);
             }
             
         }

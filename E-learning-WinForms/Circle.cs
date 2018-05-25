@@ -11,13 +11,12 @@ namespace E_learning_WinForms
     {
         public Point Centre { get; set; }
         public Point Edge { get; set; }
-        public Color CircleColor { get; set; }
+        public string Name { get; set; }
 
         public Circle(Point c, Point e)
         {
             Centre = c;
             Edge = e;
-            CircleColor = Color.White;
         }
        
         public Circle(){}
