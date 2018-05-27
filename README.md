@@ -8,3 +8,7 @@
 Не забуваєм про розділення рівня дуступу до даних, бізнес логіки на представлення та про юніт тести.
 
 Варіант: 4)коло
+
+Приклад роботи програми: 
+![How program works: ](https://user-images.githubusercontent.com/25905248/40586075-c754e20a-61c4-11e8-9c88-9676cd29569b.jpg)
+![second](https://user-images.githubusercontent.com/25905248/40586089-f64357e0-61c4-11e8-9d49-725b3b0834f4.jpg)
