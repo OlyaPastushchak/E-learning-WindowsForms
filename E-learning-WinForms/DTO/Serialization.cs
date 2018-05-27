@@ -17,6 +17,7 @@ namespace E_learning_WinForms
             Stream serialStream = new FileStream(fileName, FileMode.Create);
 
             xmlser.Serialize(serialStream, circles);
+            serialStream.Close();
         }
 
         public static List<Circle> DeserializeFromXML(string fileName)

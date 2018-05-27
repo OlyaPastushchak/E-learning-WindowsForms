@@ -52,39 +52,14 @@ namespace E_learning_WinForms
             }
         }
 
-
-        private void panel1_DoubleClick(object sender, EventArgs e)
-        {
-            countPoints++;
-            var p = sender as Panel;           
-            Point drawenPoint = Drawing.DrawPoint(p, graphics, e);
-            
-            if (countPoints % 2 == 1)
-            {
-                newCircle.Centre = drawenPoint;
-            }
-            else
-            {
-                newCircle.Edge = drawenPoint;
-                Drawing.DrawNewCircle(graphics, ref newCircle);         
-
-                drawenCircles.Add(new Circle(newCircle));
-                ToolStripItem subItem = new ToolStripMenuItem(newCircle.Name);
-                shapesToolStripMenuItem.DropDownItems.Add(subItem);
-            }
-            
-        }
-
-
-       
-        private void panel1_Click(object sender, EventArgs e)
+        private void Panel1_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouseEvent = e as MouseEventArgs;
             if (mouseEvent.Button == MouseButtons.Right)
             {
                 if (currentCircle == null)
                 {
-                    MessageBox.Show("You haven't chosen the active figure. To choose select it from Shapes drop-down list.","No active figure");
+                    MessageBox.Show("You haven't chosen the active figure. To choose select it from Shapes drop-down list.", "No active figure");
                 }
                 else
                 {
@@ -97,20 +72,35 @@ namespace E_learning_WinForms
                     currentCircle.Centre = new Point(newCentreX, newCentreY);
                     currentCircle.Edge = new Point(newEdgeX, newEdgeY);
                     Circle active = currentCircle;
-                    
+
                     DrawCircles(drawenCircles);
                     currentCircle = active;
                 }
             }
         }
 
-        private void shapesToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void Panel1_DoubleClick(object sender, EventArgs e)
         {
-            string clickedname = e.ClickedItem.Text;
-            currentCircle = drawenCircles.Find(x => x.Name == clickedname);            
+            countPoints++;
+            var p = sender as Panel;
+            Point drawenPoint = Drawing.DrawPoint(p, graphics, e);
+
+            if (countPoints % 2 == 1)
+            {
+                newCircle.Centre = drawenPoint;
+            }
+            else
+            {
+                newCircle.Edge = drawenPoint;
+                Drawing.DrawNewCircle(graphics, ref newCircle);
+
+                drawenCircles.Add(new Circle(newCircle));
+                ToolStripItem subItem = new ToolStripMenuItem(newCircle.Name);
+                shapesToolStripMenuItem.DropDownItems.Add(subItem);
+            }
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel1.Refresh();
             shapesToolStripMenuItem.DropDownItems.Clear();
@@ -118,23 +108,7 @@ namespace E_learning_WinForms
             drawenCircles = null;
         }
 
-        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog
-            {
-                RestoreDirectory = true,
-                DefaultExt = "xml",
-                Title = "Save file with circles"
-            };
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                Serialization.SerializeInXML(saveFileDialog1.FileName, drawenCircles);
-            }          
-        }
-                
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
@@ -151,6 +125,27 @@ namespace E_learning_WinForms
                 DrawCircles(deserializedCircles);
                 drawenCircles = deserializedCircles;
             }
+        }
+
+        private void SaveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog
+            {
+                RestoreDirectory = true,
+                DefaultExt = "xml",
+                Title = "Save file with circles"
+            };
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Serialization.SerializeInXML(saveFileDialog1.FileName, drawenCircles);
+            }
+        }
+
+        private void ShapesToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            string clickedname = e.ClickedItem.Text;
+            currentCircle = drawenCircles.Find(x => x.Name == clickedname);
         }
     }
 }
