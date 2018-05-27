@@ -4,15 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Xml.Serialization;
+
 namespace E_learning_WinForms
 {
-       
-    class Circle
+       [Serializable]
+    public class Circle
     {
         public Point Centre { get; set; }
         public Point Edge { get; set; }
         public string Name { get; set; }
-        public Color CircleColor { get; set; } 
+
+        [XmlIgnore]
+        public Color CircleColor { get; set; }
+
+        [XmlElement("CircleColor")]
+        public int ColorArgb
+        {
+            get { return CircleColor.ToArgb(); }
+            set { CircleColor = Color.FromArgb(value); }
+        }
+
 
         public Circle(Point c, Point e)
         {
@@ -21,6 +33,7 @@ namespace E_learning_WinForms
             Name = "";
             CircleColor = Color.White;
         }
+
         public Circle(Circle c)
         {
             Centre = c.Centre;
@@ -28,17 +41,13 @@ namespace E_learning_WinForms
             Name = c.Name;
             CircleColor = c.CircleColor;
         }
-       
-        public Circle(){}
+
 
         public double Radius()
         {
             return Math.Pow((Centre.X - Edge.X) * (Centre.X - Edge.X) + (Centre.Y - Edge.Y) * (Centre.Y - Edge.Y), 0.5);
         }
 
-        //public bool IsCompleted()
-        //{
-        //    return (Centre!=null && Edge!=null);
-        //}
+       
     }
 }
