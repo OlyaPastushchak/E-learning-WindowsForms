@@ -42,12 +42,20 @@ namespace E_learning_WinForms
             CircleColor = c.CircleColor;
         }
 
+        public Circle()
+        {
+            Centre = new Point();
+            Edge = new Point();
+            Name = "";
+            CircleColor = new Color();
+        }
 
         public double Radius()
         {
             return Math.Pow((Centre.X - Edge.X) * (Centre.X - Edge.X) + (Centre.Y - Edge.Y) * (Centre.Y - Edge.Y), 0.5);
         }
 
-       
+      
+
     }
 }

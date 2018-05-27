@@ -17,8 +17,14 @@ namespace E_learning_WinForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           // MyApp.App();
-            Application.Run(new Form1());
+            try
+            {
+                Application.Run(new Form1());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Source + e.Message);
+            }
         }
     }
 }
