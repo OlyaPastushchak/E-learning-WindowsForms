@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Circle.cs" />
+    <Compile Include="Interfaces\IShape.cs" />
     <Compile Include="Utils\Drawing.cs" />
     <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>

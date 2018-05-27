@@ -27,21 +27,16 @@ namespace E_learning_WinForms
         public void DrawCircles(List<Circle> circles)
         {
             panel1.Refresh();
-
             shapesToolStripMenuItem.DropDownItems.Clear();
-
             foreach (var circle in circles)
             {
-                double radius = circle.Radius();
-                graphics.FillEllipse(new SolidBrush(circle.CircleColor), (float)(circle.Centre.X - radius), (float)(circle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+                circle.Draw(graphics);
                 ToolStripItem subItem = new ToolStripMenuItem(circle.Name);
                 shapesToolStripMenuItem.DropDownItems.Add(subItem);
             }
             if (currentCircle != null)
             {
-                double currentCircleRadius = currentCircle.Radius();
-                graphics.FillEllipse(new SolidBrush(currentCircle.CircleColor), (float)(currentCircle.Centre.X - currentCircleRadius), (float)(currentCircle.Centre.Y - currentCircleRadius), (float)(currentCircleRadius * 2), (float)(currentCircleRadius * 2));
-
+                currentCircle.Draw(graphics);
                 currentCircle = null;
             }
         }
@@ -57,14 +52,7 @@ namespace E_learning_WinForms
                 }
                 else
                 {
-                    int newCentreX = mouseEvent.X;
-                    int newCentreY = mouseEvent.Y;
-                    double radius = currentCircle.Radius();
-                    int newEdgeX = newCentreX - (int)radius;
-                    int newEdgeY = newCentreY;
-
-                    currentCircle.Centre = new Point(newCentreX, newCentreY);
-                    currentCircle.Edge = new Point(newEdgeX, newEdgeY);
+                    currentCircle.Move(mouseEvent);
                     Circle active = currentCircle;
 
                     DrawCircles(drawenCircles);
@@ -99,7 +87,7 @@ namespace E_learning_WinForms
             panel1.Refresh();
             shapesToolStripMenuItem.DropDownItems.Clear();
             currentCircle = null;
-            drawenCircles = null;
+            drawenCircles = new List<Circle>();
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)

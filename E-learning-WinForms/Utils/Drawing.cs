@@ -23,14 +23,13 @@ namespace E_learning_WinForms
         public static void DrawNewCircle(Graphics graphics, ref Circle newCircle)
         {
             double radius = newCircle.Radius();
-            graphics.DrawEllipse(new Pen(Color.Black, 3), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+            graphics.DrawEllipse(new Pen(Color.Black, 3), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));//draws edge of circle
 
             ColorDialog colorDialog1 = new ColorDialog();
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 newCircle.CircleColor = colorDialog1.Color;
-                graphics.DrawEllipse(new Pen(colorDialog1.Color, 3), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
-                graphics.FillEllipse(new SolidBrush(colorDialog1.Color), (float)(newCircle.Centre.X - radius), (float)(newCircle.Centre.Y - radius), (float)(radius * 2), (float)(radius * 2));
+                newCircle.Draw(graphics);
             }
             newCircle.Name = Utils.ShowDialog("Please enter name for circle", "Name for circle");
 
