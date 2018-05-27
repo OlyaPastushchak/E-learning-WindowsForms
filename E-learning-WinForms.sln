@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-learning-WinForms", "E-learning-WinForms\E-learning-WinForms.csproj", "{788221FE-311F-4DC7-AB0D-F31DD9346C8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-learning-WinForms_Tests", "E-learning-WinForms_Tests\E-learning-WinForms_Tests.csproj", "{DC06D2C7-3A12-490F-AD1C-D6AF515397BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{788221FE-311F-4DC7-AB0D-F31DD9346C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{788221FE-311F-4DC7-AB0D-F31DD9346C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{788221FE-311F-4DC7-AB0D-F31DD9346C8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC06D2C7-3A12-490F-AD1C-D6AF515397BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC06D2C7-3A12-490F-AD1C-D6AF515397BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC06D2C7-3A12-490F-AD1C-D6AF515397BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC06D2C7-3A12-490F-AD1C-D6AF515397BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
